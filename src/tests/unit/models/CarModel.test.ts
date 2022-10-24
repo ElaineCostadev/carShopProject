@@ -8,15 +8,16 @@ const { expect } = chai;
 describe('Teste de Cars MODEL', () => {
   const carModel = new CarModel();
 
-  beforeEach(async () => {
+  before(() => {
     sinon.stub(Model, 'create').resolves(carsMock.correctCarWithId);
-    // sinon.stub(Model, 'find').resolves();
+    sinon.stub(Model, 'find').resolves(carsMock.readAllCars);
+    // sinon.stub(Model, 'find').resolves([]);
     // sinon.stub(Model, 'findOne').resolves();
     // sinon.stub(Model, 'findByIdAndUpdate').resolves();
     // sinon.stub(Model, 'findByIdAndDelete').resolves();
   });
 
-  afterEach(()=>{
+  after(()=>{
     sinon.restore();
   })
 
@@ -24,6 +25,13 @@ describe('Teste de Cars MODEL', () => {
     it('Car criado com sucesso', async () => {
       const newCar = await carModel.create(carsMock.correctCar);
       expect(newCar).to.be.deep.equal(carsMock.correctCarWithId)
+    })
+  });
+
+  describe('Procurando(getAll) - realAll de todos os Cars', () => {
+    it('Cars encontrados com sucesso', async () => {
+      const newCar = await carModel.read();
+      expect(newCar).to.be.deep.equal(carsMock.readAllCars)
     })
   });
 
