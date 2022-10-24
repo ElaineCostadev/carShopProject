@@ -29,6 +29,10 @@ describe('Tests de Cars CONTROLLER', () => {
       sinon.stub(carService, 'create').resolves(carsMock.correctCar);
     });
 
+    afterEach(() =>{
+      sinon.restore();
+    })
+
     it('Car criado com sucesso', async () => {
       req.body = carsMock.correctCar;
       await carController.create(req, res);
@@ -42,5 +46,24 @@ describe('Tests de Cars CONTROLLER', () => {
 
   });
 
+  describe('Procurando(getAll) - realAll de todos os Cars', () => {
+    beforeEach(() => {
+      sinon.stub(carService, 'read').resolves(carsMock.readAllCars);
+    });
+
+    afterEach(() =>{
+      sinon.restore();
+    });
+    
+    it('Cars encontrados com sucesso', async () => {
+      await carController.read(req, res);
+      
+      const statusStub = res.status as sinon.SinonStub;
+      expect(statusStub.calledWith(200)).to.be.true
+
+      const jsonStub = res.json  as sinon.SinonStub;     
+      expect(jsonStub.calledWith(carsMock.readAllCars)).to.be.true;
+    })
+  });
 
 });
