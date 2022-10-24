@@ -101,3 +101,26 @@ export const carDoorsLtTwo = {
   seatsQty: 2,
   doorsQty: 1
 }
+
+export const readAllCars = [
+    {
+      "_id": "6356cc60ec88e98f6fe02490",
+      "model": "Ferrari Maranello",
+      "year": 1963,
+      "color": "red",
+      "buyValue": 3500000,
+      "doorsQty": 2,
+      "seatsQty": 2,
+      "__v": 0
+    },
+    {
+      "_id": "6356e72e4f5e46fc7b3e8dff",
+      "model": "Uno da Escada",
+      "year": 1963,
+      "color": "red",
+      "buyValue": 3500,
+      "doorsQty": 2,
+      "seatsQty": 2,
+      "__v": 0
+    },
+];
