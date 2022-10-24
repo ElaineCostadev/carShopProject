@@ -46,7 +46,7 @@ describe('Tests de Cars CONTROLLER', () => {
 
   });
 
-  describe('Procurando(getAll) - realAll de todos os Cars', () => {
+  describe('Procurando(getAll) - readAll de todos os Cars', () => {
     beforeEach(() => {
       sinon.stub(carService, 'read').resolves(carsMock.readAllCars);
     });
@@ -63,6 +63,27 @@ describe('Tests de Cars CONTROLLER', () => {
 
       const jsonStub = res.json  as sinon.SinonStub;     
       expect(jsonStub.calledWith(carsMock.readAllCars)).to.be.true;
+    })
+  });
+
+  describe('Procurando(readOne) - readOne de apenas um Car', () => {
+    beforeEach(() => {
+      sinon.stub(carService, 'readOne').resolves(carsMock.correctCarWithId);
+    });
+
+    afterEach(() =>{
+      sinon.restore();
+    });
+    
+    it('Apenas um Car encontrado com sucesso', async () => {
+      req.params = { id: carsMock.correctCarWithId._id };
+      await carController.readOne(req, res);
+      
+      const statusStub = res.status as sinon.SinonStub;
+      expect(statusStub.calledWith(200)).to.be.true
+
+      const jsonStub = res.json  as sinon.SinonStub;     
+      expect(jsonStub.calledWith(carsMock.correctCarWithId)).to.be.true;
     })
   });
 
