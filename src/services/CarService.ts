@@ -40,8 +40,8 @@ class CarService /* implements IService<ICar>  */{
     return updatedCar;
   };
 
-  public destroy = async (_id: string): Promise<ICar> => {
-    const deleteOnCar = await this._car.destroy(_id);
+  public delete = async (_id: string): Promise<ICar> => {
+    const deleteOnCar = await this._car.delete(_id);
 
     if (!deleteOnCar) throw new Error(ErrorTypes.ObjectNotFound);
 
