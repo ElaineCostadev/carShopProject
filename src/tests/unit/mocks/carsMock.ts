@@ -7,6 +7,17 @@ export const correctCar = {
   doorsQty: 2
 };
 
+export const wrongCarWithId = {
+  _id: 'testId',
+  __v: 0,
+  model: 'Uno da Escada',
+  year: 1963,
+  color: 'red',
+  buyValue: 3500,
+  seatsQty: 2,
+  doorsQty: 2
+};
+
 export const correctCarWithId = {
   _id: '6356cc60ec88e98f6fe02490',
   __v: 0,
