@@ -17,7 +17,7 @@ describe('Tests de Cars SERVICE', () => {
 
   beforeEach(async () => {
     sinon.stub(carModel, 'create').resolves(carsMock.correctCarWithId);
-    // sinon.stub(carModel, 'read').resolves();
+    sinon.stub(carModel, 'read').resolves(carsMock.readAllCars);
     // sinon.stub(carModel, 'readOne').resolves();
     // sinon.stub(carModel, 'update').resolves();
     // sinon.stub(carModel, 'destroy').resolves();
@@ -42,11 +42,17 @@ describe('Tests de Cars SERVICE', () => {
 
 			expect(error).to.be.instanceOf(ZodError);
     })
-
   });
-  // it('', async () => {});
-  // it('', async () => {});
-  // it('', async () => {});
 
+  describe('Procurando(getAll) - realAll de todos os Cars', () => {
+    it('Cars encontrados com sucesso', async () => {
+      const newCar = await carService.read();
+      expect(newCar).to.be.deep.equal(carsMock.readAllCars)
+    })
+  });
 
 });
+  // it('', async () => {});
+  // it('', async () => {});
+  // it('', async () => {});
+
