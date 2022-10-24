@@ -10,9 +10,16 @@ class CarController {
     return res.status(201).json(createdCar);
   };
 
-  public read = async (req: Request, res:Response<ICar[]>) => {
+  public read = async (_req: Request, res:Response<ICar[]>) => {
     const readAll = await this._service.read();
     return res.status(200).json(readAll);
+  };
+
+  public readOne = async (req: Request, res:Response<ICar>) => {
+    const { id } = req.params;
+    
+    const readOne = await this._service.readOne(id);
+    return res.status(200).json(readOne);
   };
 }
 
