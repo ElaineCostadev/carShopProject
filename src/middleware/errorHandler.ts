@@ -11,7 +11,7 @@ const errorHandler /* : ErrorRequestHandler  */ = (
   if (error instanceof ZodError) return res.status(400).json({ message: error.issues });
   const createdError = errorCatalog[error.message as ErrorTypes];
   if (createdError) {
-    return res.status(createdError.status).json(createdError.message);
+    return res.status(createdError.status).json({ error: createdError.message });
   }
 
   console.error(error);
