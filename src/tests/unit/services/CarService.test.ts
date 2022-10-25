@@ -5,6 +5,7 @@ import CarService from '../../../services/CarService';
 import * as carsMock from '../mocks/carsMock';
 import chaiAsPromised from 'chai-as-promised';
 import { ZodError } from 'zod';
+import { ErrorTypes } from '../../../errors/catalogErrors';
 // import { errorCatalog } from '../../../errors/catalogErrors';
 
 chai.use(chaiAsPromised)
@@ -15,15 +16,17 @@ describe('Tests de Cars SERVICE', () => {
   const carModel = new CarModel();
   const carService = new CarService(carModel);
 
-  beforeEach(async () => {
+  before(() => {
     sinon.stub(carModel, 'create').resolves(carsMock.correctCarWithId);
     sinon.stub(carModel, 'read').resolves(carsMock.readAllCars);
-    // sinon.stub(carModel, 'readOne').resolves();
+    sinon.stub(carModel, 'readOne')
+    .onCall(0).resolves(carsMock.correctCarWithId)
+    .onCall(1).resolves(null);
     // sinon.stub(carModel, 'update').resolves();
     // sinon.stub(carModel, 'destroy').resolves();
   });
 
-  afterEach(()=>{
+  after(()=>{
     sinon.restore();
   })
 
@@ -36,7 +39,7 @@ describe('Tests de Cars SERVICE', () => {
       let error;
 			try {
 				await carService.create({});
-			} catch (err) {
+			} catch (err: unknown) {
 				error = err;
 			}
 
@@ -46,8 +49,26 @@ describe('Tests de Cars SERVICE', () => {
 
   describe('Procurando(getAll) - realAll de todos os Cars', () => {
     it('Cars encontrados com sucesso', async () => {
-      const newCar = await carService.read();
-      expect(newCar).to.be.deep.equal(carsMock.readAllCars)
+      const allCars = await carService.read();
+      expect(allCars).to.be.deep.equal(carsMock.readAllCars)
+    })
+  });
+
+  describe('Procurando(readOne) - readOne de um Car', () => {
+    it('Apenas um Car encontrado com sucesso', async () => {
+      const oneCar = await carService.readOne(carsMock.correctCarWithId._id);
+      expect(oneCar).to.be.deep.equal(carsMock.correctCarWithId)
+    })
+
+    it('Quando não é encontrado um Car ', async () => {
+      let error;
+      try {
+        await carService.readOne(carsMock.wrongCarWithId._id);
+      } catch (err: any) {
+        error = err;
+      }
+      // expect(error).not.to.be.undefined;
+      expect(error.message).to.be.deep.equal(ErrorTypes.ObjectNotFound)
     })
   });
 
