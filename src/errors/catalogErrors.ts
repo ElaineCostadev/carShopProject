@@ -1,11 +1,6 @@
 export enum ErrorTypes {
   ObjectNotFound = 'ObjectNotFound',
-  // EmptyObject = 'EmptyObject',
   InvalidMongoId = 'InvalidMongoId',
-  // InvalidSeatsQty = 'InvalidSeatsQty',
-  // InvalidDoorsQty = 'InvalidDoorsQty',
-  // EmptyAttibutesVehicle = 'EmptyAttibutesVehicle',
-  // EmptyAttibutesCar = 'EmptyAttibutesCar,',
 }
 
 type ErrorResponseObject = {
