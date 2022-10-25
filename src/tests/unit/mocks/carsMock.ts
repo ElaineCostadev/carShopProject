@@ -9,7 +9,6 @@ export const correctCar = {
 
 export const wrongCarWithId = {
   _id: 'testId',
-  __v: 0,
   model: 'Uno da Escada',
   year: 1963,
   color: 'red',
@@ -20,7 +19,6 @@ export const wrongCarWithId = {
 
 export const correctCarWithId = {
   _id: '6356cc60ec88e98f6fe02490',
-  __v: 0,
   model: 'Uno da Escada',
   year: 1963,
   color: 'red',
@@ -34,10 +32,19 @@ export const updatedCar = {
   year: 1966,
   color: 'blue',
   buyValue: 3500,
-  seatsQty: 2,
-  doorsQty: 2
+  seatsQty: 4,
+  doorsQty: 4
 };
 
+export const updateCarWithId = {
+  _id: '6356cc60ec88e98f6fe02490',
+  model: 'Uno da Escada',
+  year: 1966,
+  color: 'blue',
+  buyValue: 3500,
+  seatsQty: 4,
+  doorsQty: 4
+};
 export const coverageCar = {
   model: 'Uno da Escada',
   year: 1963,
@@ -115,23 +122,21 @@ export const carDoorsLtTwo = {
 
 export const readAllCars = [
     {
-      "_id": "6356cc60ec88e98f6fe02490",
-      "model": "Ferrari Maranello",
-      "year": 1963,
-      "color": "red",
-      "buyValue": 3500000,
-      "doorsQty": 2,
-      "seatsQty": 2,
-      "__v": 0
+      _id: "6356cc60ec88e98f6fe02490",
+      model: "Ferrari Maranello",
+      year: 1963,
+      color: "red",
+      buyValue: 3500000,
+      doorsQty: 2,
+      seatsQty: 2,
     },
     {
-      "_id": "6356e72e4f5e46fc7b3e8dff",
-      "model": "Uno da Escada",
-      "year": 1963,
-      "color": "red",
-      "buyValue": 3500,
-      "doorsQty": 2,
-      "seatsQty": 2,
-      "__v": 0
+      _id: "6356e72e4f5e46fc7b3e8dff",
+      model: "Uno da Escada",
+      year: 1963,
+      color: "red",
+      buyValue: 3500,
+      doorsQty: 2,
+      seatsQty: 2,
     },
 ];
