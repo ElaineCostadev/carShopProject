@@ -17,5 +17,4 @@ motorcycleRoute.get(MOTORCYCLE_ID, motorcycleController.readOne);
 motorcycleRoute.put(MOTORCYCLE_ID, motorcycleController.update);
 motorcycleRoute.delete(MOTORCYCLE_ID, motorcycleController.delete);
 
-
 export default motorcycleRoute;
