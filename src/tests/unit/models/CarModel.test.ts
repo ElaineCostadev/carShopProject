@@ -1,6 +1,6 @@
 import * as sinon from 'sinon';
 import chai from 'chai';
-import * as mongoose from 'mongoose';
+// import * as mongoose from 'mongoose';
 import { Model } from 'mongoose';
 import * as carsMock from '../mocks/carsMock';
 import CarModel from '../../../models/CarModel';

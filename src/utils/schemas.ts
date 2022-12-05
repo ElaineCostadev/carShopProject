@@ -18,6 +18,10 @@ export const motorcycleMongooseSchema = new Schema<IMotorcycle>({
   color: { type: String, required: true },
   status: { type: Boolean, required: false },
   buyValue: { type: Number, required: true },
-  category: { type: String, required: true },
+  category: {
+    type: String,
+    enum: ['Street', 'Custom', 'Trail'],
+    default: 'Street',
+  },
   engineCapacity: { type: Number, required: true },
 }, { versionKey: false });
